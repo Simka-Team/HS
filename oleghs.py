@@ -1,17 +1,18 @@
 import random
 
+
 # выбор- кто начинает из num количества игроков
-def Who_Is_Started(num=2):
-    return random.randint(1,num)
+def who_is_started(num=2):
+    return random.randint(1, num)
 
 
-#num = 5
-print(Who_Is_Started())
-#print(random.randint(1,2))
+# num = 5
+print(who_is_started())
+# print(random.randint(1,2))
 
 # initialization hands
-a=[[3,5],[2,3],[1,6],[3,3],[2,7],[4,2],[1,5]]
-b=[[2,4],[3,5],[2,3],[1,2],[3,5],[2,4],[2,6]]
+a = [[3, 5], [2, 3], [1, 6], [3, 3], [2, 7], [4, 2], [1, 5]]
+b = [[2, 4], [3, 5], [2, 3], [1, 2], [3, 5], [2, 4], [2, 6]]
 
 # вывод пятого элемента второго разряда ( от нуля счет)
 print(a[4][1])  # 7
@@ -20,22 +21,16 @@ print(a[4][1])  # 7
 a[4][1] = a[4][1] - a[4][0]
 
 # проверка его текущей жизни
-print(a[4][1]) # 5 - работает принцип !)
+print(a[4][1])  # 5 - работает принцип !)
 
 # а начинает, первая карта
 # определяем урон
 print(f"урон {a[0][0]}")
 
-#выбираем случайного противника
-anamy_card_num = random.randint(0,len(b)-1)
+# выбираем случайного противника
+anamy_card_num = random.randint(0, len(b)-1)
 print(anamy_card_num)
 b[anamy_card_num][1] -= a[0][0]
 
-# смиотрим на текущее здоровье
+# смотрим на текущее здоровье
 print(b)
-
-
-
-
-
-
