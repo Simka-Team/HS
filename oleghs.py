@@ -28,9 +28,9 @@ print(a[4][1])  # 5 - работает принцип !)
 print(f"урон {a[0][0]}")
 
 # выбираем случайного противника
-anamy_card_num = random.randint(0, len(b)-1)
-print(anamy_card_num)
-b[anamy_card_num][1] -= a[0][0]
+enemy_card_num = random.randint(0, len(b)-1)
+print(enemy_card_num)
+b[enemy_card_num][1] -= a[0][0]
 
 # смотрим на текущее здоровье
 print(b)
