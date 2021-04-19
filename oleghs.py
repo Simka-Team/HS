@@ -10,7 +10,7 @@ def who_is_started(num=2):
 print(who_is_started())
 # print(random.randint(1,2))
 
-# initialization hands
+# initialization hands for example
 a = [[3, 5], [2, 3], [1, 6], [3, 3], [2, 7], [4, 2], [1, 5]]
 b = [[2, 4], [3, 5], [2, 3], [1, 2], [3, 5], [2, 4], [2, 6]]
 
