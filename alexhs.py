@@ -42,16 +42,18 @@ def attack(all_my_cards, all_enemy_cards):
     b = random.randint(0, len(all_enemy_cards)-1)
     all_my_cards[a][1] = all_my_cards[a][1] - all_enemy_cards[b][0]
     all_enemy_cards[b][1] = all_enemy_cards[b][1] - all_my_cards[a][0]
-    ab = a + b
+    ab = all_my_cards[a], all_enemy_cards[b]
     return ab
 
-attack(all_my_cards, all_enemy_cards)
+print(attack(all_my_cards, all_enemy_cards))
 
 
 
 
 
 #random.randint(0, )
+
+
 
 
 
