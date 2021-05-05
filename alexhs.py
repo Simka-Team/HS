@@ -9,33 +9,49 @@ c = 0
 
 first_my_attack = 5
 first_my_hp = 7
+first_my_team = 0
 first_enemy_attack = 3
 first_enemy_hp = 7
-first_my_card = [first_my_attack, first_my_hp]
-first_enemy_card = [first_enemy_attack, first_enemy_hp]
-all_cards = []
-def count_cards(list):
-    if list(0) + list(1) > 0:
-        all_cards.append(list)
+first_enemy_team = 1
+first_my_card = [first_my_attack, first_my_hp, first_my_team]
+first_enemy_card = [first_enemy_attack, first_enemy_hp, first_enemy_team]
+all_my_cards = []
+all_enemy_cards = []
+ab = ''
+
+
+
+
+def count_cards(check_card):
+   if check_card[1] > 0:
+       if check_card[2] == 0:
+            all_my_cards.append(check_card)
+       elif check_card[2] == 1:
+           all_enemy_cards.append(check_card)
+   else:
+        pass
+
+
+count_cards(first_my_card)
+count_cards(first_enemy_card)
+print(all_my_cards)
+print(all_enemy_cards)
+
+def attack(all_my_cards, all_enemy_cards):
+    a = random.randint(0 ,len(all_my_cards)-1)
+    b = random.randint(0, len(all_enemy_cards)-1)
+    all_my_cards[a][1] = all_my_cards[a][1] - all_enemy_cards[b][0]
+    all_enemy_cards[b][1] = all_enemy_cards[b][1] - all_my_cards[a][0]
+    ab = a + b
+    return ab
+
+attack(all_my_cards, all_enemy_cards)
 
 
 
 
 
-
-def attack(first_my_attack, first_my_hp, first_enemy_attack_first_enemy_hp):
-    while c < 15:
-       c + 1
-        if c == 1:
-            count_cards(first_my_card)
-    #if who_start_turn == 0:
-  #     while:
-
-
-
-
-
-
+#random.randint(0, )
 
 
 
