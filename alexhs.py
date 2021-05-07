@@ -3,7 +3,7 @@ import random
 
 #who_start_turn = random.randint(0, 1)
 #c = 0
-#firstnum = 0
+firstnum = 0
 # create test bots
 # card my 1  = 5/7
 # card en 1 = 3/7
