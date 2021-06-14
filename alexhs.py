@@ -11,7 +11,7 @@ firstnum = 0
 var = 1
 temp = []
 way = 0
-gap = 0
+gap = 2
 # create test bots
 # card my 1  = 5/7
 # card en 1 = 3/7
@@ -86,20 +86,22 @@ def attack(attack_cards, def_cards,num_attack):
         num_attack = 0
 
     while var <= len(def_cards) - 1:
-        temp_attack_cards = attack_cards
-        temp_def_cards = def_cards
+
+ #       temp_attack_cards = attack_cards
+ #       temp_def_cards = def_cards
         attack_card = num_attack
         def_card = var
-        temp_def_cards[def_card][3]-=temp_attack_cards[attack_card][2]
-        temp_attack_cards[attack_card][3]-= temp_def_cards[def_card][2]
-        if len(temp_attack_cards) * len(temp_def_cards) > 0:
-            temp_attack_cards[attack_card][0] = 1
-            temp_def_cards[def_card][0] = 1
+        def_cards[def_card][3]-=attack_cards[attack_card][2]
+        attack_cards[attack_card][3]-=def_cards[def_card][2]
+        if len(attack_cards) * len(def_cards) > 0:
+            attack_cards[attack_card][0] = 1
+            def_cards[def_card][0] = 1
         else:
-            temp_attack_cards[attack_card][0] = 0
-            temp_def_cards[def_cards][0] = 0
-        temp.append(temp_def_cards)
-        temp.append(temp_attack_cards)
+            attack_cards[attack_card][0] = 0
+            def_cards[def_cards][0] = 0
+
+        temp.append(str(def_cards))
+        temp.append(str(attack_cards))
         way=+1
         print(var)
         print(temp)
@@ -160,4 +162,3 @@ elif len(attack_all_my_cards) < len(attack_all_enemy_cards):
     print("lose")
 '''
 attack(all_my_cards, all_enemy_cards, my_num_attack)
-print(temp)
