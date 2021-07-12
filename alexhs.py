@@ -4,7 +4,7 @@ import random
 
 my_num_attack = 0
 enemy_num_attack = 0
-who_start_turn = 2
+wst = 2
 c = 0
 firstnum = 0
 temp_of_my = []
@@ -64,7 +64,7 @@ attack_all_my_cards = []
 attack_all_enemy_cards = []
 
 
-
+'''
 def count_cards(check_card, cards):
     if check_card[3] > 0:
         cards.append(check_card)
@@ -78,32 +78,33 @@ def clear_cards(cards):
             new_cards.append(cards[i])
     return new_cards
 
+'''
 
-
-count_cards(first_my_card, all_my_cards)
-count_cards(first_enemy_card, all_enemy_cards)
-count_cards(second_my_card, all_my_cards)
-count_cards(second_enemy_card, all_enemy_cards)
-attack_all_enemy_cards = all_enemy_cards
-attack_all_my_cards = all_my_cards
+#count_cards(first_my_card, all_my_cards)
+#count_cards(first_enemy_card, all_enemy_cards)
+#count_cards(second_my_card, all_my_cards)
+#count_cards(second_enemy_card, all_enemy_cards)
+#attack_all_enemy_cards = all_enemy_cards
+#attack_all_my_cards = all_my_cards
 
 
 # print(f'{all_my_cards} мои карты')
 # print(f'{all_enemy_cards} карты врага')
+#сделано
 def who_start_turn(my_cards, enemy_cards):
-    global who_start_turn
+    global wst
     if len(my_cards) > len(enemy_cards):
-        who_start_turn = 0
+        wst = 0
     elif len(my_cards) < len(enemy_cards):
-        who_start_turn = 1
+        wst = 1
     else:
-        who_start_turn = random.randint(0, 1)
-    return who_start_turn
+        wst = random.randint(0, 1)
+    return wst
 
 
 # сделано
 def attack(attack_cards, def_cards ,num_attack):
-    global way, temp, temp_of_attack, temp_of_def, who_start_turn
+    global way, temp, temp_of_attack, temp_of_def, wst
 
     var = 0
     if way == 0:
@@ -143,23 +144,23 @@ def check_for_add(attack_cards, def_cards):
         return died_attack, died_def, 0
 # сделано
 def adding(attack_cards, def_cards, life):
-    global who_start_turn, temp_of_my, temp_of_enemy, died_my_cards, died_enemy_cards
+    global wst, temp_of_my, temp_of_enemy, died_my_cards, died_enemy_cards
     if life == 1:
-        if who_start_turn == 0:
+        if wst == 0:
             temp_of_my.append(attack_cards)
             temp_of_enemy.append(def_cards)
-        elif who_start_turn == 1:
+        elif wst == 1:
             temp_of_my.append(def_cards)
             temp_of_enemy.append(attack_cards)
     elif life == 0:
-        if who_start_turn == 0:
+        if wst == 0:
             died_my_cards.append(attack_cards)
             died_enemy_cards.append(def_cards)
-        elif who_start_turn == 1:
+        elif wst == 1:
             died_my_cards.append(def_cards)
             died_enemy_cards.append(attack_cards)
-        
-            
+
+
 
 
 
@@ -177,34 +178,23 @@ def adding(attack_cards, def_cards, life):
 #            print(way)
 #            print(temp)
 
+#вроде сделано))
+def sort_for_attack(my_cards, enemy):
+    global wst
+    if wst == 0:
+        attack_cards = my_cards[0]
+        def_cards = enemy[0]
+    else:
+        attack_cards = enemy[0]
+        def_cards = my_cards[0]
+    my_cards.pop(0)
+    enemy.pop(0)
+    return attack_cards, def_cards
 
-def sort_for_attack():
-    temp_attack_cards = []
-    temp_def_cards = []
-    temp_def_cards_continue = []
-    temp_attack_cards_continue = []
-    # sort if can continue
 
-    i = 0
 
-    for i in range(len(temp)):
-            int(temp[i])
-    for i in temp:
-        temp_def_cards_continue.append(temp[i][0].sort(1))
-    i = 0
-    for i in temp_def_cards_continue:
-        temp_def_cards.append(temp_def_cards_continue[i][1].sort(1))
-    temp_def_cards = temp_def_cards[0]
-    # sort if can continue
-    i = 0
 
-    for i in temp:
-        temp_attack_cards_continue.append(temp[i][0].sort(1))
-    i = 0
-    for i in temp_attack_cards_continue:
-        temp_attack_cards.append(temp_attack_cards_continue[i][1].sort(0))
-    temp_attack_cards = temp_attack_cards[0]
-    '''
+'''
 def attack(attack_cards, def_cards, num_attack):
     global way, war
     for var in range(len(def_cards)) - 1:
@@ -274,4 +264,3 @@ elif len(attack_all_my_cards) > len(attack_all_enemy_cards):
 elif len(attack_all_my_cards) < len(attack_all_enemy_cards):
     print("lose")
 '''
-print(attack(all_my_cards, all_enemy_cards, my_num_attack))
