@@ -1,16 +1,17 @@
 import random
 
 
-
+first = 0
 my_num_attack = 0
 enemy_num_attack = 0
-wst = 2
+wst = 2 #who start turn
 c = 0
 firstnum = 0
 temp_of_my = []
 temp_of_enemy = []
 died_my_cards = []
 died_enemy_cards = []
+result = 0
 # вариант
 var = 1
 temp = []
@@ -57,8 +58,8 @@ second_enemy_card = [gap, second_enemy_team, second_enemy_attack, second_enemy_h
 #card my 3 = 11/22
 #third_my_attack =
 
-all_my_cards = []
-all_enemy_cards = []
+all_my_cards = [first_my_card, second_my_card]
+all_enemy_cards = [first_enemy_card, second_enemy_card]
 ab = []
 attack_all_my_cards = []
 attack_all_enemy_cards = []
@@ -104,7 +105,7 @@ def who_start_turn(my_cards, enemy_cards):
 
 # сделано
 def attack(attack_cards, def_cards ,num_attack):
-    global way, temp, temp_of_attack, temp_of_def, wst
+    global way, temp, temp_of_attack, temp_of_def, wst, my_num_attack, enemy_num_attack, result
 
     var = 0
     if way == 0:
@@ -126,7 +127,12 @@ def attack(attack_cards, def_cards ,num_attack):
 
             way += 1
             var += 1
-
+    num_attack+=1
+    result = [attack_cards, def_cards]
+    if wst == 0:
+        wst = 1
+    elif wst == 1:
+        wst = 0
     return attack_cards, def_cards
 # сделано
 def check_for_add(attack_cards, def_cards):
@@ -184,6 +190,7 @@ def sort_for_attack(my_cards, enemy):
     if wst == 0:
         attack_cards = my_cards[0]
         def_cards = enemy[0]
+
     else:
         attack_cards = enemy[0]
         def_cards = my_cards[0]
@@ -264,3 +271,28 @@ elif len(attack_all_my_cards) > len(attack_all_enemy_cards):
 elif len(attack_all_my_cards) < len(attack_all_enemy_cards):
     print("lose")
 '''
+wst = who_start_turn(all_my_cards, all_enemy_cards)
+while len(temp_of_my) * len(temp_of_enemy) > 0:
+    if first == 0:
+        if wst == 0:
+            attack(all_my_cards, all_enemy_cards, my_num_attack)
+
+
+        elif wst == 1:
+            attack(all_enemy_cards,all_my_cards,enemy_num_attack)
+        adding(check_for_add(result[0], result[1]))
+    else:
+
+        attack(sort_for_attack(temp_of_my, temp_of_enemy))
+        adding(check_for_add(result[0], result[1]))
+print(temp_of_my)
+print(temp_of_enemy)
+
+
+
+
+
+
+
+
+
