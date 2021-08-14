@@ -249,6 +249,8 @@ print(f'{after_attack_enemy} вражеская карта которая уда
 #print(attack_all_my_cards)
 
 '''
+#TODO нужно разобраться с этим блоком -- Олег
+
 while len(attack_all_my_cards) * len(attack_all_enemy_cards) > 0:
     if len(attack_all_my_cards) > len(attack_all_enemy_cards):
         attack(attack_all_my_cards, attack_all_enemy_cards, my_num_attack)
