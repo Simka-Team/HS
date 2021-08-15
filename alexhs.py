@@ -17,6 +17,9 @@ var = 1
 temp = []
 way = 0
 gap = 2
+
+result_of_checking = []
+result_for_attack = []
 # create test bots
 # card my 1  = 5/7
 # card en 1 = 3/7
@@ -71,14 +74,12 @@ def count_cards(check_card, cards):
         cards.append(check_card)
     else:
         pass
-
 def clear_cards(cards):
     new_cards = []
     for i in range(len(cards)):
         if cards[i][3] > 0:
             new_cards.append(cards[i])
     return new_cards
-
 '''
 
 #count_cards(first_my_card, all_my_cards)
@@ -136,6 +137,7 @@ def attack(attack_cards, def_cards ,num_attack):
     return attack_cards, def_cards
 # сделано
 def check_for_add(attack_cards, def_cards):
+    global result_of_checking
     temp_of_attack = []
     temp_of_def = []
     died_attack = []
@@ -143,11 +145,12 @@ def check_for_add(attack_cards, def_cards):
     if len(attack_cards) * len(def_cards) > 0:
         temp_of_attack.append(attack_cards)
         temp_of_def.append(def_cards)
-        return temp_of_attack, temp_of_def, 1
+        result_of_checking = temp_of_attack, temp_of_def, 1
     elif len(attack_cards) * len(def_cards) == 0:
         died_attack.append(attack_cards)
         died_def.append(def_cards)
-        return died_attack, died_def, 0
+        result_of_checking = died_attack, died_def, 0
+    
 # сделано
 def adding(attack_cards, def_cards, life):
     global wst, temp_of_my, temp_of_enemy, died_my_cards, died_enemy_cards
@@ -186,17 +189,21 @@ def adding(attack_cards, def_cards, life):
 
 #вроде сделано))
 def sort_for_attack(my_cards, enemy):
-    global wst
+    global wst, result_for_attack, my_num_attack
     if wst == 0:
         attack_cards = my_cards[0]
         def_cards = enemy[0]
 
-    else:
+    elif wst == 1:
         attack_cards = enemy[0]
         def_cards = my_cards[0]
     my_cards.pop(0)
     enemy.pop(0)
-    return attack_cards, def_cards
+    if wst == 0:
+    
+        result_for_attack = attack_cards, def_cards, my_num_attack
+    elif wst == 1:
+        result_for_attack = attack_cards, def_cards, enemy_num_attack
 
 
 
@@ -272,27 +279,22 @@ elif len(attack_all_my_cards) < len(attack_all_enemy_cards):
     print("lose")
 '''
 wst = who_start_turn(all_my_cards, all_enemy_cards)
+print(wst)
+
+if wst == 0:
+    attack(all_my_cards, all_enemy_cards, my_num_attack)
+
+
+elif wst == 1:
+    attack(all_enemy_cards,all_my_cards,enemy_num_attack)
+check_for_add(result[0], result[1])
+adding(result_of_checking[0], result_of_checking[1], result_of_checking[2])
+first+=1
 while len(temp_of_my) * len(temp_of_enemy) > 0:
-    if first == 0:
-        if wst == 0:
-            attack(all_my_cards, all_enemy_cards, my_num_attack)
-
-
-        elif wst == 1:
-            attack(all_enemy_cards,all_my_cards,enemy_num_attack)
-        adding(check_for_add(result[0], result[1]))
-    else:
-
-        attack(sort_for_attack(temp_of_my, temp_of_enemy))
-        adding(check_for_add(result[0], result[1]))
+    sort_for_attack(temp_of_my, temp_of_enemy)
+    attack(result_for_attack[0], result_for_attack[1], result_for_attack[2])
+    check_for_add(result[0], result[1])
+    adding(result_of_checking[0], result_of_checking[1], result_of_checking[2])
+    
 print(temp_of_my)
 print(temp_of_enemy)
-
-
-
-
-
-
-
-
-
